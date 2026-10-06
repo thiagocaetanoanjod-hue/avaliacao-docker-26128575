@@ -50,11 +50,41 @@ docker compose exec db mariadb -u root -p
 
 ## Parte 5 · Persistência
 
-9. Quais comandos você usou para derrubar e subir a stack? Qual comando teria apagado o post que você criou,
-   e por quê?
+9. Quais comandos você usou para derrubar e subir a stack? Qual comando teria apagado o post que você criou, e por quê?
+Para derrubar (parar e remover os containers e a rede): docker compose down
+Para subir novamente em segundo plano: docker compose up -d
+O comando que apagaria tudo seria: docker compose down -v
+Pois 0 -v diz para destruir não só os conteiners, mas todos os volumes associados, como o banco de dados e os ficheiros do WordPress estão associados, destruiria junto
+
 
 10. Código de conclusão impresso pelo verificador:
 
-```
-(cole aqui)
-```
+A. Arquivos, imagens e Git
+[ OK ] A1 portal/Dockerfile segue os requisitos
+[ OK ] A2 imagem manutencao:26128575 corrigida e servindo o aviso
+[ OK ] A3 .env fora do Git e .env.example versionado
+[FALHA] A4 5+ commits e remoto no GitHub (encontrados: 4)
+         -> faça commits por etapa e configure o origin
+[ OK ] A5 imagem reozin/agrovale-portal:1.0-26128575 pública no Docker Hub
+
+B. Stack em execução
+[ OK ] B1 serviços portal, blog e db em execução
+[ OK ] B2 portal roda a imagem publicada
+[ OK ] B3 portas: portal em 8075 e blog em 9075
+[ OK ] B4 db sem porta publicada e com volume nomeado
+[ OK ] B5 blog com volume nomeado em /var/www/html
+[ OK ] B6 rede própria compartilhada pelos três serviços
+[ OK ] B7 política de restart nos três serviços
+[ OK ] B8 nenhuma senha escrita direto no docker-compose.yml
+
+C. Conteúdo e persistência
+[ OK ] C1 portal mostra seu nome e sua matrícula
+[FALHA] C2 WordPress instalado com a matrícula no título do site
+         -> instale o WordPress pelo navegador em http://localhost:9075
+[FALHA] C3 post sobreviveu à recriação do blog (post  · container 2026-10-06T01:12:14)
+         -> nenhum post com a sua matrícula no título
+
+================================================================
+ Resultado: 13/16 verificações
+ Ainda há falhas. Corrija e rode de novo.
+================================================================
