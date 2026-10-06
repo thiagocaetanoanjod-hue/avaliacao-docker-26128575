@@ -32,18 +32,21 @@ Link: https://hub.docker.com/repository/docker/reozin/agrovale-portal/general
 
 | # | Instrução | O que estava errado | O que você viu acontecer | Como corrigiu |
 |---|---|---|---|---|
-| 1 | | | | |
-| 2 | | | | |
-| 3 | | | | |
+| 1 | `WORKDIR` | O Workdir não procurava um arquivo html para servir. | Ele abriu a página padrão do nginx. | Coloquei `/html` no final da linha. |
+| 2 | Nenhuma | Ele não tinha a linha de COPY. | Ele não pegou o arquivo certo. | Adicionei a linha `COPY site/ .` |
+| 3 | Nenhuma | Sem EXPOSE. | Abria na porta errada. | Coloquei a linha `EXPOSE 80` no final para quando não abrir a porta certa ele abrir o arquivo de erro. |
 
 6. Qual a diferença entre `-p 7042:80` e `-p 80:7042` no `docker run`? Qual dos dois números é a porta do container?
+Quem é a porta, no primeiro caso a porta do conteiner é 7075, já no segundo é 80
 
 ## Parte 4 · docker-compose.yml
 
-7. No serviço `blog`, por que `WORDPRESS_DB_HOST` recebe `db` e não `localhost`?
+7. No serviço `blog`, por que `WORDPRESS_DB_HOST` recebe `db` e não `localhost`? 
+Pois o WORDPRESS é um banco de dados e foi feito para comportar esse tipo de arquivo, o localhost não
 
-8. Por que o serviço `db` não publica a porta 3306? Se precisar consultar o banco, como faz sem publicar
-   a porta? Mostre o comando.
+8. Por que o serviço `db` não publica a porta 3306? Se precisar consultar o banco, como faz sem publicar a porta? Mostre o comando.
+Por segurança, já que fora da porta 3306, o banco de dados fica isolado do muido externo, ou seja, só o blog pode interagir com ele
+docker compose exec db mariadb -u root -p
 
 ## Parte 5 · Persistência
 
