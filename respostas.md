@@ -1,9 +1,9 @@
 # Respostas · Avaliação Prática de Docker · Cooperativa AgroVale (Turma A)
 
-Nome:
-Matrícula:
-Usuário do GitHub:
-Usuário do Docker Hub:
+Nome: Thiago Alberto Caetano dos Anjos
+Matrícula: 26128575
+Usuário do GitHub: thiagocaetanoanjod-hue
+Usuário do Docker Hub: reozin
 
 Responda com as suas palavras e com o que aconteceu na SUA máquina. Resposta curta e certa vale mais
 do que texto longo copiado. Resposta que contradiz o seu próprio Dockerfile ou compose vale zero.
@@ -11,13 +11,18 @@ do que texto longo copiado. Resposta que contradiz o seu próprio Dockerfile ou 
 ## Parte 1 · Dockerfile do portal
 
 1. Qual imagem base você usou e qual o tamanho final da imagem do portal (saída de `docker images`)?
+Nome: teste-portal
+Tamanho: 21MB
 
-2. Em qual pasta do container o Nginx procura os arquivos do site? Mostre o comando que você usou para
-   conferir que o `index.html` está lá dentro.
+2. Em qual pasta do container o Nginx procura os arquivos do site? Mostre o comando que você usou para conferir que o `index.html` está lá dentro.
+# R1.2  O conteúdo de portal/html/ copiado para a pasta de onde o Nginx serve os arquivos. 
+COPY html/ /usr/share/nginx/html
 
 ## Parte 2 · Docker Hub
 
 3. Nome completo da imagem publicada e link público do repositório no Docker Hub.
+Nome: reozin/agrovale-portal:1.0-26128575
+Link: https://hub.docker.com/repository/docker/reozin/agrovale-portal/general
 
 4. Por que o `docker login` foi feito com um token de acesso e não com a senha da conta?
 
